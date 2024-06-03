@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            $('#voteForm').on('submit', function(e) {
+                var selection = '';
+                var voterId = [[${voter.personalId}]];
+                var electionId = [[${election.id}]];
+                if($('#flexCheck1').is(':checked'))
+                    selection += 'Candidate1|';
+                if($('#flexCheck2').is(':checked'))
+                    selection += 'Candidate2|';
+                if($('#flexCheck3').is(':checked'))
+                    selection += 'Candidate3|';
+                if($('#flexCheck4').is(':checked'))
+                    selection += 'Candidate4|';
+                if($('#flexCheck5').is(':checked')) {
+                    selection += 'Candidate5|';
+                }
+                $('#hSelection').val(selection);
+                $('#voterId').val(voterId);
+                $('#electionId').val(electionId);
+                return true;
+            });
+        });
+        /*]]>*/
+    </script>
+    <div class="container my-5">
+        <h2 class="mb-5">Voter Information</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form id="voteForm" action="#" th:action="@{/vote}" th:object="${voteModel}" method="post">
+                    <div class="row">
+                        <p th:text="${voter.name}" />
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-15 mx-auto">
+                            <!-- CHECKBOX LIST -->
+                            <div class="card rounded border-0 shadow-sm position-relative">
+                                <div class="card-body p-5">
+                                    <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+                                        <i class="fas fa-vote-yea "></i>
+                                        <div class="ms-3">
+                                            <h2 class="text-uppercase fw-weight-bold mb-0" th:text="${election.name}" />
+                                            <p class="text-gray fst-italic mb-0">05 December 2020</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="flexCheck1" th:field="*{candidate1Selected}" type="checkbox">
+                                        <label class="form-check-label" for="flexCheck1"><span class="fst-italic pl-1" th:text="${election.candidate1.name}" /></label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="flexChec2" type="checkbox" th:field="*{candidate2Selected}">
+                                        <label class="form-check-label" for="flexChec2"><span class="fst-italic pl-1" th:text="${election.candidate2.name}" /></label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="flexCheck3" type="checkbox" th:field="*{candidate3Selected}">
+                                        <label class="form-check-label" for="flexCheck3"><span class="fst-italic pl-1" th:text="${election.candidate3.name}" /></label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="flexCheck4" type="checkbox" th:field="*{candidate4Selected}">
+                                        <label class="form-check-label" for="flexCheck4"><span class="fst-italic pl-1" th:text="${election.candidate4.name}" /></label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="flexCheck5" type="checkbox" th:field="*{candidate5Selected}">
+                                        <label class="form-check-label" for="flexCheck5"><span class="fst-italic pl-1" th:text="${election.candidate5.name}" /></label>
+                                    </div>
+                                    <input type="hidden" id="hSelection" />
+                                    <input type="hidden" id="voterId" th:field="*{voterId}" th:value="${voter.personalId}" />
+                                    <input type="hidden" id="electionId" th:field="*{electionId}" th:value="${election.id}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <input type="submit" class="btn btn-primary" value="Vote">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

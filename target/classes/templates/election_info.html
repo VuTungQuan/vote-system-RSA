@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-lg-15 mx-auto">
+                    <!-- CHECKBOX LIST -->
+                    <div class="card rounded border-0 shadow-sm position-relative">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+                                <i class="fas fa-vote-yea "></i>
+                                <div class="ms-3">
+                                    <h2 class="text-uppercase fw-weight-bold mb-0" th:text="${election.name}" />
+                                    <p class="text-gray fst-italic mb-0">05 December 2020</p>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Candidate</th>
+                                            <th scope="col">No. Vote</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td><span th:text="${election.candidate1.name}" /></td>
+                                            <td><span th:text="${election.candidate1.numOfVote}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td><span th:text="${election.candidate2.name}" /></td>
+                                            <td><span th:text="${election.candidate2.numOfVote}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td><span th:text="${election.candidate3.name}" /></td>
+                                            <td><span th:text="${election.candidate3.numOfVote}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td><span th:text="${election.candidate4.name}" /></td>
+                                            <td><span th:text="${election.candidate4.numOfVote}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td><span th:text="${election.candidate5.name}" /></td>
+                                            <td><span th:text="${election.candidate5.numOfVote}" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <p>Back to <a href="/">Home</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
